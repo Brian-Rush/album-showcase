@@ -1,11 +1,22 @@
 //Back End
 function Album (artist, albumName, year, image) {
   this.artist = artist;
-  this.albumName = album;
+  this.albumName = albumName;
   this.year = year;
   this.image = image;
-  this.albumArray = []
+  // this.infoArray = []
 }
+
+var library = new Object();
+library.albumsArray = []
+
+
+Album.prototype.albumDetails = function() {
+  return this.artist + this.albumName + this.year;
+}
+// library.prototype.getAlbumURI = function() {
+//   return this.firstName + " " + this.lastName ;
+// }
 
 
 //Front End
@@ -23,19 +34,30 @@ $(document).ready(function() {
   $("form").submit(function(event) {
     event.preventDefault();
 
-    var inputtedArtist = $("input['name=artist']").val();
-    var inputtedAlbumName = $("input['name=album-name']").val();
-    var inputtedYear = $("input['name=year']").val();
-    var inputtedImageLink = $("input['name=image']").val();
+    var inputtedArtist = $("input[name='artist']").val();
+    var inputtedAlbumName = $("input[name='album-name']").val();
+    var inputtedYear = $("input[name='year']").val();
+    var inputtedImageLink = $("input[name='image']").val();
     var newAlbum = new Album(inputtedArtist, inputtedAlbumName, inputtedYear, inputtedImageLink);
 
-    $(".new-address, .old-address").each(function(){
-      var addressType = $(this).find("select.address-select-box").val();
-      var inputtedStreet = $(this).find("input.new-street").val();
-      var inputtedCity = $(this).find("input.new-city").val();
-      var inputtedState = $(this).find("input.new-state").val();
-      var newAddress = new Address(inputtedStreet, inputtedCity, inputtedState, addressType);
-      newContact.addresses.push(newAddress);
-    });
+    newAlbum.albumDetails();
+    console.log(newAlbum.albumDetails());
 
+    // library.albumsArray.push(newAddress);
+
+    // .push
+    //$(".newArtist").each(function() {
+    //
+    // });
+    //
+    // $(".new-address, .old-address").each(function(){
+    //   var addressType = $(this).find("select.address-select-box").val();
+    //   var inputtedStreet = $(this).find("input.new-street").val();
+    //   var inputtedCity = $(this).find("input.new-city").val();
+    //   var inputtedState = $(this).find("input.new-state").val();
+    //   var newAddress = new Address(inputtedStreet, inputtedCity, inputtedState, addressType);
+    //   newContact.addresses.push(newAddress);
+
+    $(".output").text(newAlbum.albumDetails());
+  });
 });
