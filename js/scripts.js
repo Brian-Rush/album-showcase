@@ -49,6 +49,12 @@ $(document).ready(function() {
     library.albumsArray.push(newAlbum);
     console.log(library);
 
+    // $(".d-block").attr("src", inputtedImageLink);
+    $(".carousel-inner").append('<div class="carousel-item active">' +
+                '<img class="d-block img-fluid" src="' + inputtedImageLink + '" alt="">' +
+              '</div>'
+);
+
     // .push
     //$(".newArtist").each(function() {
     //
@@ -62,6 +68,6 @@ $(document).ready(function() {
     //   var newAddress = new Address(inputtedStreet, inputtedCity, inputtedState, addressType);
     //   newContact.addresses.push(newAddress);
 
-    $(".output").text(newAlbum.getAlbumDetails());
+    // $(".output").text(library.albumsArray);
   });
 });
