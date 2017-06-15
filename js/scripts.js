@@ -1,30 +1,48 @@
 //Back End
-function Album (artist, albumName, year, image) {
+function Album (artist, albumName, year, imageLink) {
   this.artist = artist;
   this.albumName = albumName;
   this.year = year;
-  this.image = image;
+  this.imageLink = imageLink;
   this.infoArray = []
 }
 
+// function Link (imageLink) {
+//   this.imageLink = imageLink;
+//   this.imageArray = []
+// }
+
 var library = new Object();
-library.albumsArray = []
+
+library.albumsArray = [];
+
+var linkLibrary = new Object();
+linkLibrary.imageLinkArray = [];
 
 
 Album.prototype.getAlbumDetails = function() {
-  return this.artist + this.albumName + this.year + this.image;
+  return this.artist + this.albumName + this.year + this.imageLink;
 }
+
+// library.prototype.getImageLinks = function() {
+//   var imageLinkArray = [];
+//   for(var i=0; i < library.albumsArray.length + 1; i++) {
+//     imageLinkArray.push(this.newAlbum.imageLink);
+//     return imageLinkArray;
+//   }
+// }
+
 // library.prototype.getAlbumURI = function() {
 //   return this.firstName + " " + this.lastName ;
 // }
 
 
-//Front End
+//FRONT END
 function resetFields() {
   $("input[name='artist']").val("");
   $("input[name='album-name']").val("");
   $("input[name='year']").val("");
-  $("input[name='image']").val("");
+  $("input[name='image-link']").val("");
 };
 
 
@@ -37,7 +55,7 @@ $(document).ready(function() {
     var inputtedArtist = $("input[name='artist']").val();
     var inputtedAlbumName = $("input[name='album-name']").val();
     var inputtedYear = $("input[name='year']").val();
-    var inputtedImageLink = $("input[name='image']").val();
+    var inputtedImageLink = $("input[name='image-link']").val();
     var newAlbum = new Album(inputtedArtist, inputtedAlbumName, inputtedYear, inputtedImageLink);
 
     newAlbum.getAlbumDetails();
@@ -47,26 +65,26 @@ $(document).ready(function() {
 
     console.log(newAlbum);
     library.albumsArray.push(newAlbum);
+    linkLibrary.imageLinkArray.push(inputtedImageLink);
+
     console.log(library);
+    // library.getImageLinks();
 
     // $(".d-block").attr("src", inputtedImageLink);
-    $(".carousel-inner").append('<div class="carousel-item active">' +
-                '<img class="d-block img-fluid" src="' + inputtedImageLink + '" alt="">' +
-              '</div>'
-);
+    // $(".carousel-item").append('<div class="carousel-item">' +
+    //             '<img class="d-block img-fluid" src="' + inputtedImageLink + '" alt="">' +
+    //           '</div>'
+    //         );
 
-    // .push
-    //$(".newArtist").each(function() {
-    //
-    // });
-    //
-    // $(".new-address, .old-address").each(function(){
-    //   var addressType = $(this).find("select.address-select-box").val();
-    //   var inputtedStreet = $(this).find("input.new-street").val();
-    //   var inputtedCity = $(this).find("input.new-city").val();
-    //   var inputtedState = $(this).find("input.new-state").val();
-    //   var newAddress = new Address(inputtedStreet, inputtedCity, inputtedState, addressType);
-    //   newContact.addresses.push(newAddress);
+    // for(var i=0; i < library.albumsArray.length; i++) {
+      var lastLinkAdded = linkLibrary.imageLinkArray.slice(-1);
+      $('<div class="carousel-item"><img src="' + lastLinkAdded + '"></div>').appendTo(".carousel-inner");
+    // };
+
+    //DOESN'T WORK
+    // library.albumsArray[i]
+    // works
+    // library.albumsArray[i].imageLink
 
     // $(".output").text(library.albumsArray);
   });
