@@ -46,7 +46,8 @@ $(document).ready(function() {
     newAlbum.infoArray.push(inputtedArtist, inputtedAlbumName, inputtedYear, inputtedImageLink);
 
     console.log(newAlbum);
-    // library.albumsArray.push(newAddress);
+    library.albumsArray.push(newAlbum);
+    console.log(library);
 
     // .push
     //$(".newArtist").each(function() {
