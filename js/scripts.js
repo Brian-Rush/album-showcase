@@ -4,15 +4,15 @@ function Album (artist, albumName, year, image) {
   this.albumName = albumName;
   this.year = year;
   this.image = image;
-  // this.infoArray = []
+  this.infoArray = []
 }
 
 var library = new Object();
 library.albumsArray = []
 
 
-Album.prototype.albumDetails = function() {
-  return this.artist + this.albumName + this.year;
+Album.prototype.getAlbumDetails = function() {
+  return this.artist + this.albumName + this.year + this.image;
 }
 // library.prototype.getAlbumURI = function() {
 //   return this.firstName + " " + this.lastName ;
@@ -40,9 +40,12 @@ $(document).ready(function() {
     var inputtedImageLink = $("input[name='image']").val();
     var newAlbum = new Album(inputtedArtist, inputtedAlbumName, inputtedYear, inputtedImageLink);
 
-    newAlbum.albumDetails();
-    console.log(newAlbum.albumDetails());
+    newAlbum.getAlbumDetails();
+    console.log(newAlbum.getAlbumDetails());
 
+    newAlbum.infoArray.push(inputtedArtist, inputtedAlbumName, inputtedYear, inputtedImageLink);
+
+    console.log(newAlbum);
     // library.albumsArray.push(newAddress);
 
     // .push
@@ -58,6 +61,6 @@ $(document).ready(function() {
     //   var newAddress = new Address(inputtedStreet, inputtedCity, inputtedState, addressType);
     //   newContact.addresses.push(newAddress);
 
-    $(".output").text(newAlbum.albumDetails());
+    $(".output").text(newAlbum.getAlbumDetails());
   });
 });
