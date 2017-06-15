@@ -86,6 +86,6 @@ $(document).ready(function() {
     // works
     // library.albumsArray[i].imageLink
 
-    // $(".output").text(library.albumsArray);
+    $(".output").text(newAlbum.artist + ", " + newAlbum.albumName + ", " + newAlbum.year + ".");
   });
 });
